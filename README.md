@@ -34,7 +34,11 @@ VideoGenLearn/
     ├── 01c-industry-pipelines.md
     ├── 02-architecture.md
     ├── 03-midtraining.md
-    ├── 04-posttraining.md
+    ├── 04-posttraining.md       # 第 4 章概览
+    ├── 04-1-sft.md              # 4.1 SFT
+    ├── 04-2-rl.md               # 4.2 RL：奖励模型与偏好优化
+    ├── 04-3-distill.md          # 4.3 蒸馏
+    ├── 04-4-opd.md              # 4.4 OPD
     ├── 04a-h3-posttraining.md   # 4.A：H3 后训练专题（自动生成，不要手改）
     ├── 05-reference.md
     ├── 06-training-efficiency.md

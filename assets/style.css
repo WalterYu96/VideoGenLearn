@@ -320,3 +320,47 @@ a:hover { text-decoration: underline; }
   padding: 1px 8px; border-radius: 99px;
 }
 @media (max-width: 860px) { .features { grid-template-columns: 1fr; } }
+
+/* ---------- H3 后训练专题（content/04a~04e，由 tools/import_survey.py 从原 HTML 生成，class 带 sv- 前缀） ---------- */
+.content .sv-meta { color: var(--text-3); font-size: 13px; }
+.content .sv-box { border-radius: 10px; padding: 12px 16px; margin: 16px 0; border: 1px solid var(--border); background: var(--bg-soft); }
+.content .sv-box > :first-child, .content .sv-simple > :first-child { margin-top: 0; }
+.content .sv-box > :last-child, .content .sv-simple > :last-child { margin-bottom: 0; }
+.content .sv-tldr { background: var(--key-soft); border-color: color-mix(in srgb, var(--key) 45%, var(--border)); }
+.content .sv-warn { background: var(--warn-soft); border-color: color-mix(in srgb, var(--warn) 45%, var(--border)); }
+.content .sv-ok { background: var(--tip-soft); border-color: color-mix(in srgb, var(--tip) 45%, var(--border)); }
+.content .sv-bad { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+.content .sv-card { border: 1px solid var(--border); border-radius: 12px; background: var(--bg-elev); padding: 14px 18px; margin: 18px 0; box-shadow: var(--shadow); }
+.content .sv-card h4 { margin-top: 0; }
+.content .sv-src { font-size: 13px; color: var(--text-3); }
+.content .sv-formula {
+  font-family: 'Cambria Math', 'STIX Two Math', 'Times New Roman', serif; font-size: 16px;
+  background: var(--bg-soft); border-left: 3px solid var(--key); border-radius: 0 8px 8px 0;
+  padding: 10px 16px; margin: 12px 0; overflow-x: auto; white-space: nowrap;
+}
+.content .sv-tag {
+  display: inline-block; font-size: 12px; line-height: 1.6; padding: 0 8px; border-radius: 99px;
+  margin-right: 4px; border: 1px solid; vertical-align: 1px; font-weight: 600;
+}
+.content .sv-t-hi { color: var(--tip); background: var(--tip-soft); border-color: color-mix(in srgb, var(--tip) 40%, transparent); }
+.content .sv-t-mid { color: var(--warn); background: var(--warn-soft); border-color: color-mix(in srgb, var(--warn) 40%, transparent); }
+.content .sv-t-lo { color: var(--accent); background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+.content .sv-t-info { color: var(--key); background: var(--key-soft); border-color: color-mix(in srgb, var(--key) 40%, transparent); }
+.content .sv-simple { background: var(--tip-soft); border: 1px solid color-mix(in srgb, var(--tip) 40%, var(--border)); border-radius: 10px; padding: 12px 16px; margin: 12px 0; }
+.content .sv-label { display: inline-block; font-size: 12px; font-weight: 700; color: var(--bg); background: var(--tip); border-radius: 4px; padding: 0 8px; margin-bottom: 6px; }
+.content .sv-oneline { font-weight: 600; background: var(--bg-elev); border: 1px dashed var(--tip); border-radius: 8px; padding: 8px 12px; margin: 10px 0; }
+.content details { border: 1px solid var(--border); border-radius: 10px; padding: 8px 14px; margin: 12px 0; background: var(--bg-elev); }
+.content details > summary { cursor: pointer; font-weight: 600; }
+.content details[open] > summary { margin-bottom: 8px; }
+.content details.sv-deep { border-color: color-mix(in srgb, var(--key) 45%, var(--border)); }
+.content details.sv-deep > summary { color: var(--key); }
+.content .sv-symtab td:first-child { white-space: nowrap; font-family: 'Cambria Math', 'STIX Two Math', 'Times New Roman', serif; }
+.content .sv-phase { border-left: 4px solid var(--accent); padding: 2px 0 2px 16px; margin: 20px 0; }
+.content .sv-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 14px 0; }
+.content .sv-flow .sv-n { border: 1px solid var(--border); background: var(--bg-elev); border-radius: 8px; padding: 6px 10px; font-size: 13.5px; box-shadow: var(--shadow); }
+.content .sv-flow .sv-a { color: var(--text-3); }
+.content dl.sv-kv { display: grid; grid-template-columns: 130px 1fr; gap: 4px 14px; margin: 8px 0; }
+.content dl.sv-kv dt { color: var(--text-3); }
+.content dl.sv-kv dd { margin: 0; }
+.content ol.sv-refs li { font-size: 14px; }
+@media (max-width: 520px) { .content dl.sv-kv { grid-template-columns: 1fr; } }

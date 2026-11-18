@@ -1,6 +1,6 @@
 # 视频生成学习站（2026）
 
-基于《视频生成技术学习手册（2026）》整理的章节式学习网站，并补充了数据管线专题（镜头切分、视频 / 图像去重、头部团队数据管线对比）。
+基于《视频生成技术学习手册（2026）》整理的章节式学习网站，并补充了数据管线专题（镜头切分、视频 / 图像去重、头部团队数据管线对比）和 MiniMax-H3 后训练专题（第 4 章 4.A，GSB → Flow-DPO → 在线 RL 的调研与落地方案）。
 
 ## 运行
 
@@ -8,16 +8,20 @@
 
 ```bash
 cd VideoGenLearn
-python3 -m http.server 8765
+./serve.sh          # 默认端口 8765，可传参：./serve.sh 9000
 ```
 
-然后打开 http://localhost:8765 。
+脚本会启动 `python3 -m http.server` 并自动打开 http://localhost:8765 ，按 Ctrl+C 停止。
 
 ## 目录结构
 
 ```
 VideoGenLearn/
+├── serve.sh              # 本地预览脚本
 ├── index.html            # 页面外壳
+├── H3_posttraining_survey.html  # H3 后训练专题的原文（单页 HTML），4.A 由它生成
+├── tools/
+│   └── import_survey.py  # 把上面的原文转成 content/04a-h3-posttraining.md
 ├── assets/
 │   ├── chapters.js       # 章节清单（顺序、编号、标题、文件）
 │   ├── app.js            # 路由、Markdown 渲染、公式、搜索、目录
@@ -31,6 +35,7 @@ VideoGenLearn/
     ├── 02-architecture.md
     ├── 03-midtraining.md
     ├── 04-posttraining.md
+    ├── 04a-h3-posttraining.md   # 4.A：H3 后训练专题（自动生成，不要手改）
     ├── 05-reference.md
     ├── 06-training-efficiency.md
     ├── 07-inference.md
@@ -41,6 +46,14 @@ VideoGenLearn/
 
 1. 在 `content/` 下新建或编辑 `.md` 文件。
 2. 新文件需要在 `assets/chapters.js` 中登记；带 `parent` 字段的条目会显示为该章的子专题。
+
+**H3 后训练专题（4.A）**：内容来自 `H3_posttraining_survey.html`，修改时改原文，再重新生成：
+
+```bash
+python3 tools/import_survey.py
+```
+
+脚本把 h2/h3 转成 Markdown 标题（目录和搜索都能用），其余保留原 HTML（class 加 `sv-` 前缀，样式在 `assets/style.css` 末尾），原文里的站内锚点改写成 `#/页面id/sN`。原文新增或删除 h2 时，要同步改脚本里 `PAGES` 的 h2 列表。
 
 ## Markdown 扩展语法
 

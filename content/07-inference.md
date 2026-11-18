@@ -16,7 +16,7 @@ CFG 蒸馏 | 前向次数减半
 
 | 方向 | 代表方法 | 说明 |
 |---|---|---|
-| 少步采样 | rCM、DMD2、TSCD、LightX2V 4 步 LoRA | 见 [4.4 蒸馏](#/posttraining)；工业端 50–150 NFE → 4–10 NFE |
+| 少步采样 | rCM、DMD2、TSCD、LightX2V 4 步 LoRA | 见 [4.3 蒸馏](#/post-distill)；工业端 50–150 NFE → 4–10 NFE |
 | CFG 蒸馏 | guidance embedding | 前向次数减半 |
 | 静态稀疏注意力 | STA / SSTA（滑动块）、Radial Attention、窗口注意力 | HunyuanVideo 1.5 SSTA：720p 241 帧每步 5.51s → 2.95s，端到端 1.87× |
 | 动态 / 可训练稀疏 | Sparse VideoGen、VSA、SLA（稀疏 + 线性注意力） | SLA 在 TurboDiffusion 里用 Top-K 0.1，即 90% 稀疏 |

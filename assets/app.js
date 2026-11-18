@@ -160,12 +160,12 @@
       ['data', '数据', '切镜 · 过滤 · 去重 · caption'],
       ['architecture', '预训练架构', '3D VAE · DiT/MMDiT · Flow Matching'],
       ['midtraining', '中训练', '质量退火 · 能力扩展 · 任务注入'],
-      ['posttraining', 'SFT', '小而精 · 类别均衡 · 模型融合'],
+      ['post-sft', 'SFT', '小而精 · 类别均衡 · 模型融合'],
     ];
     const stages2 = [
-      ['posttraining', '奖励与 RL', 'DPO · GRPO · ReFL · 多奖励'],
-      ['posttraining', '蒸馏', '步数 + CFG 蒸馏 · 自回归蒸馏'],
-      ['posttraining', 'OPD', '在线策略蒸馏 · 多任务合并'],
+      ['post-rl', '奖励与 RL', 'DPO · GRPO · ReFL · 多奖励'],
+      ['post-distill', '蒸馏', '步数 + CFG 蒸馏 · 自回归蒸馏'],
+      ['post-opd', 'OPD', '在线策略蒸馏 · 多任务合并'],
       ['inference', '推理效率', '稀疏注意力 · 量化 · 缓存'],
     ];
     const stage = (row) => row.map(([id, t, d], i) =>
@@ -206,6 +206,16 @@
         </div>
       </section>
       <section>
+        <h2 class="home-h">后训练专题：MiniMax-H3</h2>
+        <div class="features">
+          <a class="feature wide" href="#/h3-rl">
+            <span class="feature-tag">重点</span>
+            <b>H3 后训练调研与落地方案（GSB → DPO → 在线 RL）</b>
+            <small>33B 音视频 DiT 的约束与实测、7 类后训练方法逐个拆解，推荐路线 LoRA Flow-DPO → DiffusionNFT</small>
+          </a>
+        </div>
+      </section>
+      <section>
         <h2 class="home-h">视频模型全流程 · 8 个阶段</h2>
         <p class="muted">第一行是“能力”阶段，第二行是“对齐与成本”阶段。T2I 经验在数据和 RL 两处最能直接复用。</p>
         <div class="stages"><div class="stage-row"><span class="row-label">能力</span>${stage(stages1)}</div>
@@ -223,7 +233,14 @@
   async function renderChapter(id, anchor) {
     const c = byId[id];
     const content = $('#content');
-    if (!c) { content.innerHTML = '<h1>没有找到这个章节</h1><p><a href="#/">回到首页</a></p>'; return; }
+    if (!c) {
+      buildNav(null);
+      $('#toc').innerHTML = '';
+      $('#chapterFooter').innerHTML = '';
+      content.innerHTML = `<h1>没有找到这个章节</h1><p>链接 <code>#/${escapeHtml(id)}</code> 不存在，可能章节已改名。
+        如果刚更新过网站，按 <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> 强制刷新。</p><p><a href="#/">回到首页</a></p>`;
+      return;
+    }
     document.title = `${c.title} · 视频生成学习站`;
     buildNav(id);
     let src;
@@ -241,7 +258,7 @@
       const p = byId[c.parent];
       const crumb = document.createElement('div');
       crumb.className = 'crumb';
-      crumb.innerHTML = `<a href="#/${p.id}">${p.num}. ${escapeHtml(p.title)}</a> / 专题`;
+      crumb.innerHTML = `<a href="#/${p.id}">${p.num}. ${escapeHtml(p.title)}</a> / ${c.title.startsWith('专题') ? '专题' : '小节'}`;
       content.appendChild(crumb);
     }
     content.appendChild(frag);
@@ -271,6 +288,8 @@
     const parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
     closeMenu();
     hideResults();
+    const alias = (window.CHAPTER_ALIASES || {})[parts[0]];
+    if (alias) { location.replace(`#/${alias}`); return; }
     if (!parts.length) renderHome();
     else renderChapter(parts[0], parts[1]);
   }

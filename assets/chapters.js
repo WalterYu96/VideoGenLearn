@@ -8,8 +8,19 @@ window.CHAPTERS = [
   { id: 'architecture', num: '2', title: '预训练：模型架构', file: 'content/02-architecture.md', stage: '能力' },
   { id: 'midtraining', num: '3', title: '中训练（Continue Training）', file: 'content/03-midtraining.md', stage: '能力' },
   { id: 'posttraining', num: '4', title: '后训练：SFT、RL、蒸馏、OPD', file: 'content/04-posttraining.md', stage: '对齐与成本' },
+  { id: 'post-sft', num: '4.1', title: 'SFT：监督微调', file: 'content/04-1-sft.md', parent: 'posttraining' },
+  { id: 'post-rl', num: '4.2', title: 'RL：奖励模型与偏好优化', file: 'content/04-2-rl.md', parent: 'posttraining' },
+  { id: 'post-distill', num: '4.3', title: '蒸馏：步数、CFG 与自回归蒸馏', file: 'content/04-3-distill.md', parent: 'posttraining' },
+  { id: 'post-opd', num: '4.4', title: 'OPD：在线策略蒸馏', file: 'content/04-4-opd.md', parent: 'posttraining' },
+  { id: 'h3-rl', num: '4.A', title: '专题：MiniMax-H3 后训练调研与落地方案', file: 'content/04a-h3-posttraining.md', parent: 'posttraining' },
   { id: 'reference', num: '5', title: '参考生成与多任务能力', file: 'content/05-reference.md', stage: '能力' },
   { id: 'train-eff', num: '6', title: '训练效率', file: 'content/06-training-efficiency.md', stage: '对齐与成本' },
   { id: 'inference', num: '7', title: '推理效率', file: 'content/07-inference.md', stage: '对齐与成本' },
   { id: 'roadmap', num: '8', title: '学习路线与参考资料', file: 'content/08-roadmap.md', stage: '总览' },
 ];
+
+// 旧链接 → 新章节 id（H3 后训练专题曾拆成 5 页，后合成一页）
+window.CHAPTER_ALIASES = {
+  'h3-rl-summary': 'h3-rl', 'h3-rl-methods': 'h3-rl', 'h3-rl-industry': 'h3-rl',
+  'h3-rl-plan': 'h3-rl', 'h3-rl-appendix': 'h3-rl',
+};

@@ -100,9 +100,9 @@ a:hover { text-decoration: underline; }
 .brand:hover { text-decoration: none; }
 .brand small { color: var(--text-3); font-weight: 500; margin-left: 2px; }
 .brand-mark {
-  width: 28px; height: 28px; border-radius: 8px;
-  display: grid; place-items: center;
-  background: var(--accent); color: #fff; font-size: 12px;
+  width: 32px; height: 32px;
+  display: block;
+  object-fit: contain;
 }
 .icon-btn {
   border: 1px solid var(--border); background: var(--bg-elev); color: var(--text-2);
